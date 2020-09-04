@@ -19,6 +19,15 @@ defmodule AppTestWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/" do
+    pipe_through :api
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: AppTestWeb.Schema,
+      interface: :simple,
+      context: %{pubsub: AppTestWeb.Endpoint}
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", AppTestWeb do
   #   pipe_through :api
