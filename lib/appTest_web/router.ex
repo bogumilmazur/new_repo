@@ -17,6 +17,7 @@ defmodule AppTestWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/simplequeue", SimpleQueueController, :index
   end
 
   scope "/" do
